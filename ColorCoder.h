@@ -1,6 +1,7 @@
 #ifndef _COLOR_CODER_H_
 #define _COLOR_CODER_H_
 
+#include <iostream>
 #include "Colors.h"
 
 namespace TelCoColorCoder
@@ -27,15 +28,15 @@ namespace TelCoColorCoder
             }
     };
 
-    ColorPair GetColorFromPairNumber(int pairNumber) {
+    static ColorPair GetColorFromPairNumber(int pairNumber) {
         int zeroBasedPairNumber = pairNumber - 1;
         TelCoColor::MajorColor majorColor = 
-            (TelCoColor::MajorColor)(zeroBasedPairNumber / TelCoColor::numberOfMinorColors);
+            (TelCoColor::MajorColor)(zeroBasedPairNumber / TelCoColor::numberOfMajorColors);
         TelCoColor::MinorColor minorColor =
             (TelCoColor::MinorColor)(zeroBasedPairNumber % TelCoColor::numberOfMinorColors);
         return ColorPair(majorColor, minorColor);
     }
-    int GetPairNumberFromColor(TelCoColor::MajorColor major, TelCoColor::MinorColor minor) {
+    static int GetPairNumberFromColor(TelCoColor::MajorColor major, TelCoColor::MinorColor minor) {
         return major * TelCoColor::numberOfMinorColors + minor + 1;
     }
 }
